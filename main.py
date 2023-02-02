@@ -10,7 +10,7 @@ from multiprocessing import freeze_support
 freeze_support()
 
 url = 'https://nowsecure.nl'
-driver_path = '/usr/bin/chromedriver'
+driver_path = '/home/app/chromedriver'
 
 opts = uc.ChromeOptions()
 #opts.add_argument('--headless')

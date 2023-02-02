@@ -7,15 +7,23 @@ ENV REFRESHED_AT 2023-02-02
 
 RUN apt-get update && apt-get -y install apt-utils && apt-get -y install xvfb chromium-driver
 
-WORKDIR /app
+RUN useradd -m app
+USER app
+WORKDIR /home/app
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+RUN mkdir output
+RUN cp /usr/bin/chromedriver .
 
-COPY main.py main.py
+ENV PATH="/home/app/.local/bin:${PATH}"
 
-VOLUME /output
+COPY --chown=app:app requirements.txt requirements.txt
+RUN pip install --upgrade pip
+RUN pip install --user -r requirements.txt
 
-WORKDIR /output
+COPY --chown=app:app main.py main.py
 
-CMD [ "xvfb-run", "python3", "main.py" ]
+VOLUME /home/app/output
+
+WORKDIR /home/app/output
+
+CMD [ "xvfb-run", "python", "/home/app/main.py" ]
