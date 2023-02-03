@@ -7,6 +7,8 @@ from selenium.common.exceptions import TimeoutException
 
 from multiprocessing import freeze_support
 
+print ("Starting...")
+
 freeze_support()
 
 url = 'https://nowsecure.nl'
