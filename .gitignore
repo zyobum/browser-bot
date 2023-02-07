@@ -130,3 +130,10 @@ dmypy.json
 
 # Output
 *.png
+output/
+
+# binary
+chromedriver
+
+# macOS
+.DS_Store
